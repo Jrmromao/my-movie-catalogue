@@ -1,0 +1,5 @@
+INSERT INTO movies_tbl(ID, NAME, RELEASEDYEAR, GENRE) VALUES (1, 'Limitless', 2010, 'Drama');
+INSERT INTO movies_tbl(ID, NAME, RELEASEDYEAR, GENRE) VALUES (2, 'Hangover II', 2011, 'Comedy');
+INSERT INTO movies_tbl(ID, NAME, RELEASEDYEAR, GENRE) VALUES (3, '2012 Romance', 2016, 'Romance');
+INSERT INTO movies_tbl(ID, NAME, RELEASEDYEAR, GENRE) VALUES (4, 'Saw II', 2022, 'Horror');
+INSERT INTO movies_tbl(ID, NAME, RELEASEDYEAR, GENRE) VALUES (5, 'Fast Furious XV', 2011, 'Drama');
