@@ -45,8 +45,8 @@ public class MovieControllerTest {
         Movie movie2 = Movie.builder().name("Limitless II").genre("Action").releasedYear(2019).build();
         ArgumentCaptor<Pageable> captor = ArgumentCaptor.forClass(Pageable.class);
 
-        var movieList = Arrays.asList(movie1, movie2);
-        var moviePage = new PageImpl<>(movieList);
+        List<Movie> movieList = Arrays.asList(movie1, movie2);
+        PageImpl moviePage = new PageImpl<>(movieList);
 
         given(movieService.findAll(captor.capture())).willReturn(moviePage);
         // when  - action or the Behaviour we're testing

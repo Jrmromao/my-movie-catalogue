@@ -34,7 +34,7 @@ public class MovieController {
 
     @PostMapping(path = "/movie", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity create(@RequestBody @Valid MovieDto movieDto) {
-        var movie = new Movie();
+        Movie movie = new Movie();
         BeanUtils.copyProperties(movieDto, movie);
         Movie saveMovie = movieService.save(movie);
         return ResponseEntity.status(HttpStatus.CREATED).body(saveMovie);

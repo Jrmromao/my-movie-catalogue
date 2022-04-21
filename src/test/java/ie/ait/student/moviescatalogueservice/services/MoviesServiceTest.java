@@ -45,17 +45,17 @@ class MoviesServiceTest {
     public void givenMovieList_whenFindAll_thenReturnMovieList() {
         //given - precondition and setup
         //stub of the getAll from
-        var movie1 = Movie.builder()
+        Movie movie1 = Movie.builder()
                 .name("Ironman")
                 .genre("Drama")
                 .releasedYear(2012)
                 .build();
         ArgumentCaptor<Pageable> captor = ArgumentCaptor.forClass(Pageable.class);
-        var movieList = Arrays.asList(movie1, movie);
-        var moviePage = new PageImpl<>(movieList);
+        List<Movie> movieList = Arrays.asList(movie1, movie);
+        PageImpl moviePage = new PageImpl<>(movieList);
         BDDMockito.given(movieRepository.findAll(captor.capture())).willReturn(moviePage);
         // when  - action or the Behaviour that we're going to test
-        var movies = movieService.findAll(captor.capture());
+        Page<Movie> movies = movieService.findAll(captor.capture());
         // then  - verify or output
         Assertions.assertThat(movies).isNotNull();
         Assertions.assertThat(movies.getContent().size()).isEqualTo(2);
@@ -67,12 +67,12 @@ class MoviesServiceTest {
     public void givenEmptyMovieList_whenFindAll_thenReturnEmptyMovieList() {
         // given - precondition and setup
         //stub of the getAll from
-        var captor = ArgumentCaptor.forClass(Pageable.class);
-        var movieList = Collections.EMPTY_LIST;
-        var moviePage = new PageImpl<>(movieList);
+        ArgumentCaptor<Pageable> captor = ArgumentCaptor.forClass(Pageable.class);
+        List movieList = Collections.EMPTY_LIST;
+        PageImpl moviePage = new PageImpl<>(movieList);
         BDDMockito.given(movieRepository.findAll(captor.capture())).willReturn(moviePage);
         // when  - action or the Behaviour that we're going to test
-        var movies = movieService.findAll(captor.capture());
+        Page<Movie> movies = movieService.findAll(captor.capture());
         // then  - verify or output
         Assertions.assertThat(movies.getContent()).isEmpty();
         Assertions.assertThat(movies.getContent().size()).isEqualTo(0);
@@ -85,7 +85,7 @@ class MoviesServiceTest {
         // given - precondition and setup
         BDDMockito.given(movieRepository.findById(movie.getId())).willReturn(Optional.of(movie));
         // when  - action or the Behaviour that we're going to test
-        var savedEmployee = movieService.findById(movie.getId()).get();
+        Movie savedEmployee = movieService.findById(movie.getId()).get();
         // then  - verify or output
         Assertions.assertThat(savedEmployee).isNotNull();
     }
@@ -99,7 +99,7 @@ class MoviesServiceTest {
         movie.setGenre("Comedy");
         movie.setName("Scary Movie");
         // when  - action or the Behaviour that we're going to test
-        var updatedMovie = movieService.update(movie);
+        Movie updatedMovie = movieService.update(movie);
         // then  - verify or output
         Assertions.assertThat(updatedMovie.getGenre()).isEqualTo("Comedy");
         Assertions.assertThat(updatedMovie.getName()).isEqualTo("Scary Movie");
@@ -113,7 +113,7 @@ class MoviesServiceTest {
         movieRepository.save(movie);
         // when  - action or the Behaviour that we're going to test
         movieRepository.delete(movie);
-        var employeeOptional = movieService.findById(movie.getId());
+        Optional<Movie> employeeOptional = movieService.findById(movie.getId());
         // then  - verify or output
         assertThat(employeeOptional).isEmpty();
     }
