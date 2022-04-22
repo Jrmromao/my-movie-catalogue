@@ -88,6 +88,10 @@
 		</dependency>
 
 	</dependencies>
+	<build>
+		<finalName>${artifactId}</finalName>
+	</build>
+
 	<reporting>
 		<plugins>
 			<plugin>
@@ -104,4 +108,5 @@
 			</plugin>
 		</plugins>
 	</reporting>
+
 </project>
